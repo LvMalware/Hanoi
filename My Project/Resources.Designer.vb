@@ -74,9 +74,37 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property fundo() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("fundo", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property Pilar() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Pilar", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property Tower_of_Hanoi_4() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Tower_of_Hanoi_4", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property wiipal_ico() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("wiipal_ico", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property willy_wiipal_big() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("willy_wiipal_big", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

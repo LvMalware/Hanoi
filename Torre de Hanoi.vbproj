@@ -17,6 +17,7 @@
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
+    <ApplicationIcon>Tower_of_Hanoi_4.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -94,6 +95,12 @@
     <Compile Include="PinDis.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sobre.Designer.vb">
+      <DependentUpon>Sobre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sobre.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -107,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PinDis.resx">
       <DependentUpon>PinDis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sobre.resx">
+      <DependentUpon>Sobre.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +138,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pilar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tower_of_Hanoi_4.gif" />
+    <None Include="Resources\fundo.png" />
+    <None Include="Resources\willy_wiipal_big.png" />
+    <None Include="Resources\wiipal_ico.png" />
+    <Content Include="Tower_of_Hanoi_4.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

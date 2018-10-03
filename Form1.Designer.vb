@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.HanoiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.NovoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -33,6 +34,7 @@ Partial Class Form1
         Me.IniciarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator
         Me.PararToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.SobreToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.Panel1 = New System.Windows.Forms.Panel
         Me.LabelMovs = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
@@ -42,7 +44,7 @@ Partial Class Form1
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HanoiToolStripMenuItem, Me.ResolverToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HanoiToolStripMenuItem, Me.ResolverToolStripMenuItem, Me.SobreToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(876, 24)
@@ -59,29 +61,29 @@ Partial Class Form1
         'NovoToolStripMenuItem
         '
         Me.NovoToolStripMenuItem.Name = "NovoToolStripMenuItem"
-        Me.NovoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.NovoToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.NovoToolStripMenuItem.Text = "Novo"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(116, 6)
         '
         'ReiniciarToolStripMenuItem
         '
         Me.ReiniciarToolStripMenuItem.Name = "ReiniciarToolStripMenuItem"
-        Me.ReiniciarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ReiniciarToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.ReiniciarToolStripMenuItem.Text = "Reiniciar"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(116, 6)
         '
         'SairToolStripMenuItem
         '
         Me.SairToolStripMenuItem.Name = "SairToolStripMenuItem"
-        Me.SairToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SairToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.SairToolStripMenuItem.Text = "Sair"
         '
         'ResolverToolStripMenuItem
@@ -108,10 +110,16 @@ Partial Class Form1
         Me.PararToolStripMenuItem.Size = New System.Drawing.Size(106, 22)
         Me.PararToolStripMenuItem.Text = "Parar"
         '
+        'SobreToolStripMenuItem
+        '
+        Me.SobreToolStripMenuItem.Name = "SobreToolStripMenuItem"
+        Me.SobreToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
+        Me.SobreToolStripMenuItem.Text = "Sobre"
+        '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Olive
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel1.Controls.Add(Me.LabelMovs)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -144,10 +152,15 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
+        Me.BackgroundImage = Global.Torre_de_Hanoi.My.Resources.Resources.fundo
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(876, 512)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -175,5 +188,6 @@ Partial Class Form1
     Friend WithEvents IniciarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents PararToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SobreToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

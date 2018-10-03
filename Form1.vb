@@ -9,6 +9,7 @@
         resolver = False
         Application.ExitThread()
         Application.Exit()
+
     End Sub
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         NovoJogo(3, 3)
@@ -66,6 +67,120 @@
         Hanoi3(Disco - 1, Por, De, Para)
     End Sub
 
+    Sub Hanoi4(ByVal Disco As Integer, ByVal de As Integer, ByVal por1 As Integer, ByVal por2 As Integer, ByVal para As Integer)
+        If resolver = False Then Exit Sub
+        If Disco = 1 Then
+            If resolver = False Then Exit Sub
+            Pinos(de).Discos.Peek.MovePara(Pinos(para))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+        ElseIf Disco = 2 Then
+            If resolver = False Then Exit Sub
+            Pinos(de).Discos.Peek.MovePara(Pinos(por1))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+            If resolver = False Then Exit Sub
+            Pinos(de).Discos.Peek.MovePara(Pinos(para))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+            If resolver = False Then Exit Sub
+            Pinos(por1).Discos.Peek.MovePara(Pinos(para))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+        Else
+            If resolver = False Then Exit Sub
+            Hanoi4(Disco - 2, de, por2, para, por1)
+
+            'cout << source << " --> " << intermed2 << endl;
+            If resolver = False Then Exit Sub
+            Pinos(de).Discos.Peek.MovePara(Pinos(por2))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+            'cout << source << " --> " << dest << endl;
+            If resolver = False Then Exit Sub
+            Pinos(de).Discos.Peek.MovePara(Pinos(para))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            'cout << intermed2 << " --> " << dest << endl;
+            Delay(Wait)
+            If resolver = False Then Exit Sub
+            Pinos(por2).Discos.Peek.MovePara(Pinos(para))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+            If resolver = False Then Exit Sub
+            Hanoi4(Disco - 2, por1, de, por2, para)
+        End If
+    End Sub
+
+    Sub HanoiIguais()
+        For i = 1 To Discos.Count - 1
+            If resolver = False Then Exit Sub
+            Discos(i).MovePara(Pinos(Discos.Count - i + 1))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+        Next
+        If resolver = False Then Exit Sub
+        Discos(1).MovePara(Pinos(Pinos.Count - 1))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+        Discos(Discos.Count).MovePara(Pinos(Pinos.Count))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+        Discos(Discos.Count - 1).MovePara(Pinos(Pinos.Count))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+        Discos(1).MovePara(Pinos(1))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+        For i = Discos.Count - 2 To 1 Step -1
+            If resolver = False Then Exit Sub
+            Discos(i).MovePara(Pinos(Pinos.Count))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+        Next
+    End Sub
+
+    Sub HanoiEasy()
+        For i = 1 To Discos.Count - 1
+            If resolver = False Then Exit Sub
+            'printf("\t[%d] Mova o disco %d para o pilar %d.\n", ++mv, i, i+1);
+            Discos(i).MovePara(Pinos(i + 1))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+        Next
+        'printf("\t[%d] Mova o disco %d para o pilar %d.\n", ++mv, m, n);
+        If resolver = False Then Exit Sub
+        Discos(Discos.Count).MovePara(Pinos(Pinos.Count))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        For i = Discos.Count - 1 To 1 Step -1
+            If resolver = False Then Exit Sub
+            Discos(i).MovePara(Pinos(Pinos.Count))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+            'printf("\t[%d] Mova o disco %d para o pilar %d.\n", ++mv,i, n);
+        Next
+    End Sub
+
     Private Sub NovoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NovoToolStripMenuItem.Click
         Dim pd As New PinDis
         If pd.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -78,10 +193,20 @@
     End Sub
 
     Private Sub IniciarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IniciarToolStripMenuItem.Click
-        Wait = Double.Parse(InputBox("Atraso entre movimentos (em segundos)", "Delay", "0.5"))
+        Wait = Double.Parse(InputBox("Atraso entre movimentos (em segundos)", "Delay", "0,5"))
         resolver = True
         Movimentos = 0
-        Hanoi3(Discos.Count, 1, 2, 3)
+        LabelMovs.Text = "0"
+        Delay(Wait)
+        If Pinos.Count = 3 Then
+            Hanoi3(Discos.Count, 1, 2, 3)
+        ElseIf Pinos.Count = 4 Then
+            Hanoi4(Discos.Count, 1, 2, 3, 4)
+        ElseIf Pinos.Count = Discos.Count Then
+            HanoiIguais()
+        ElseIf Pinos.Count > Discos.Count Then
+            HanoiEasy()
+        End If
     End Sub
 
     Private Sub PararToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PararToolStripMenuItem.Click
@@ -105,12 +230,17 @@
         Application.Exit()
 
     End Sub
+
+    Private Sub SobreToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SobreToolStripMenuItem.Click
+        Sobre.ShowDialog()
+
+    End Sub
 End Class
 
 Class Pino
     Private WithEvents mPilarIMG As New PictureBox With {.Image = My.Resources.Pilar, .SizeMode = PictureBoxSizeMode.StretchImage}
     Private mNumero As Integer
-    Public Discos As New Queue(Of Disco)
+    Public Discos As New Stack(Of Disco)
     Public Sub New(ByVal Parent As Control, ByVal Numero As Integer, ByVal Location As Point, ByVal Size As Size)
         Me.Numero = Numero
         Me.Location = Location
@@ -214,9 +344,9 @@ Class Disco
     End Property
     Sub MovePara(ByVal Pilar As Pino)
         On Error Resume Next
-        Me.Pilar.Discos.Dequeue()
+        Me.Pilar.Discos.Pop()
         Me.Pilar = Pilar
-        Pilar.Discos.Enqueue(Me)
+        Pilar.Discos.Push(Me)
     End Sub
 
 End Class

@@ -13,6 +13,12 @@ Public Class PinDis
     End Sub
 
     Private Sub NumericUpDown1_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NumericUpDown1.ValueChanged
-        NumericUpDown2.Maximum = NumericUpDown1.Value
+        If NumericUpDown1.Value > 4 Then
+            NumericUpDown2.Maximum = NumericUpDown1.Value
+        ElseIf NumericUpDown1.Value = 3 Then
+            NumericUpDown2.Maximum = 10
+        ElseIf NumericUpDown1.Value = 4 Then
+            NumericUpDown2.Maximum = 10
+        End If
     End Sub
 End Class

@@ -9,3 +9,4 @@ E:\Documents\Visual Studio 2008\Projects\Torre de Hanoi\Torre de Hanoi\obj\Debug
 E:\Documents\Visual Studio 2008\Projects\Torre de Hanoi\Torre de Hanoi\obj\Debug\Torre de Hanoi.xml
 E:\Documents\Visual Studio 2008\Projects\Torre de Hanoi\Torre de Hanoi\obj\Debug\Torre de Hanoi.pdb
 E:\Documents\Visual Studio 2008\Projects\Torre de Hanoi\Torre de Hanoi\obj\Debug\Torre_de_Hanoi.PinDis.resources
+E:\Documents\Visual Studio 2008\Projects\Torre de Hanoi\Torre de Hanoi\obj\Debug\Torre_de_Hanoi.Sobre.resources
