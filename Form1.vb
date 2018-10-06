@@ -264,7 +264,11 @@
     End Sub
 
     Private Sub IniciarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles IniciarToolStripMenuItem.Click
-        Wait = Double.Parse(InputBox("Atraso entre movimentos (em segundos)", "Delay", "0,5"))
+        Try
+            Wait = Double.Parse(InputBox("Atraso entre movimentos (em segundos)", "Delay", "0,5"))
+        Catch
+            Exit Sub
+        End Try
         resolver = True
         Movimentos = 0
         LabelMovs.Text = "0"
