@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("Torre de Hanoi")> 
-<Assembly: AssemblyDescription("Programa sem fins lucrativos, criado por Lucas V. Araújo, usando a linguagem Visual Basic (2008), para demonstrar a resolução do problema da torre de hanoi.")> 
+<Assembly: AssemblyDescription("Programa sem fins lucrativos, criado por Lucas V. Araujo, usando a linguagem Visual Basic (2008), para demonstrar a resolução do problema da torre de hanoi.")> 
 <Assembly: AssemblyCompany("Wiipal Tech")> 
 <Assembly: AssemblyProduct("Torre de Hanoi")> 
 <Assembly: AssemblyCopyright("Copyright © Lucas Araujo  2018")> 
