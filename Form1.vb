@@ -33,6 +33,7 @@
             DiscW *= 0.85
             PinoH += DiscH
         Next
+        If DiscW < 50 Then PinoW = DiscW
         Dim PinoX As Integer = MDisc / 2 - (PinoW - 10)
 
         For i = 1 To nPilares
@@ -54,45 +55,6 @@
         Do Until Now > dblWaitTil
             Application.DoEvents()
         Loop
-    End Sub
-
-    Sub Hanoi5e7()
-        For i = 1 To Pinos.Count - 1
-            Discos(i).MovePara(Pinos(Pinos.Count - i + 1))
-            Delay(Wait)
-        Next
-        For i = Pinos.Count - 1 To 1 Step -1
-            Discos(i).MovePara(Pinos(2))
-            Delay(Wait)
-        Next
-
-        If Pinos(1).Discos.Count <= Pinos.Count - 2 Then
-            Dim K = 3
-            For i = Pinos.Count To Pinos.Count + (Discos.Count - Pinos.Count)
-                Discos(i).MovePara(Pinos(K))
-                K += 1
-                Delay(Wait)
-            Next
-            For i = Discos.Count - 1 To Pinos.Count Step -1
-                Discos(i).MovePara(Pinos(Pinos.Count))
-                Delay(Wait)
-            Next
-            For i = 1 To Pinos(2).Discos.Count - 1
-                Discos(i).MovePara(Pinos(Pinos.Count - i))
-                Delay(Wait)
-            Next
-            K = 1
-            For i = Pinos(2).Discos(0).Numero To Pinos(2).Discos.Last.Numero
-                Discos(i).MovePara(Pinos(K))
-                K += 1
-                Delay(Wait)
-            Next
-            For i = Pinos.Last.Value.Discos.Count + 1 To 1 Step -1
-                Discos(i).MovePara(Pinos.Last.Value)
-                Delay(Wait)
-            Next
-        End If
-
     End Sub
 
     Sub Hanoi3(ByVal Disco As Integer, ByVal De As Integer, ByVal Por As Integer, ByVal Para As Integer)
@@ -154,6 +116,77 @@
             If resolver = False Then Exit Sub
             Hanoi4(Disco - 2, por1, de, por2, para)
         End If
+    End Sub
+
+    Sub Hanoi5(ByVal n As Integer, ByVal de As Integer, ByVal para As Integer, ByVal por1 As Integer, ByVal por2 As Integer, ByVal por3 As Integer)
+        If (n = 0) Or resolver = False Then Exit Sub
+        If (n = 1) Then
+            If resolver = False Then Exit Sub
+            Discos(n).MovePara(Pinos(para))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+            Exit Sub
+        End If
+
+        Hanoi5(n - 2, de, por1, por2, por3, para)
+        If resolver = False Then Exit Sub
+        Discos(n - 1).MovePara(Pinos(por3))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+        Discos(n).MovePara(Pinos(para))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+        Discos(n - 1).MovePara(Pinos(para))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+        Hanoi5(n - 2, por1, para, de, por2, por3)
+
+    End Sub
+
+    Sub HanoiN(ByVal n As Integer, ByVal de As Integer, ByVal para As Integer, ByVal aux As List(Of Integer))
+        If (n = 0) Or resolver = False Then Exit Sub
+
+        If (n = 1) Then
+            If resolver = False Then Exit Sub
+            Discos(n).MovePara(Pinos(para))
+            Movimentos += 1
+            LabelMovs.Text = Movimentos
+            Delay(Wait)
+            Exit Sub
+        End If
+        If resolver = False Then Exit Sub
+        Dim aux2 As List(Of Integer) = aux.ToList
+        aux2.RemoveAt(0)
+        HanoiN(n - 2, de, aux(0), aux2)
+
+        Discos(n - 1).MovePara(Pinos(aux.Last))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+
+        Discos(n).MovePara(Pinos(para))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+
+        Discos(n - 1).MovePara(Pinos(para))
+        Movimentos += 1
+        LabelMovs.Text = Movimentos
+        Delay(Wait)
+        If resolver = False Then Exit Sub
+        Dim Aux3 As List(Of Integer) = aux.ToList
+        Aux3(0) = de
+        HanoiN(n - 2, aux(0), para, Aux3)
+
     End Sub
 
     Sub HanoiIguais()
@@ -244,8 +277,14 @@
             HanoiIguais()
         ElseIf Pinos.Count > Discos.Count Then
             HanoiEasy()
-        ElseIf Discos.Count = 7 And Pinos.Count = 5 Then
-            Hanoi5e7()
+        ElseIf Pinos.Count = 5 Then
+            Hanoi5(Discos.Count, 1, 5, 2, 3, 4)
+        Else
+            Dim aux As New List(Of Integer)
+            For i = 2 To Pinos.Count - 1
+                aux.Add(i)
+            Next
+            HanoiN(Discos.Count, 1, Pinos.Count, aux)
         End If
     End Sub
 
@@ -378,7 +417,7 @@ Class Disco
             Return mDiscIMG.Location
         End Get
         Protected Set(ByVal value As Point)
-            mDiscIMG.Location = New Point(30 + value.X - Me.Size.Width / 2, value.Y) 'value
+            mDiscIMG.Location = New Point(20 + value.X - Me.Size.Width / 2, value.Y) 'value
             mDiscIMG.Update()
         End Set
     End Property
