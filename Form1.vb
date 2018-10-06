@@ -56,6 +56,45 @@
         Loop
     End Sub
 
+    Sub Hanoi5e7()
+        For i = 1 To Pinos.Count - 1
+            Discos(i).MovePara(Pinos(Pinos.Count - i + 1))
+            Delay(Wait)
+        Next
+        For i = Pinos.Count - 1 To 1 Step -1
+            Discos(i).MovePara(Pinos(2))
+            Delay(Wait)
+        Next
+
+        If Pinos(1).Discos.Count <= Pinos.Count - 2 Then
+            Dim K = 3
+            For i = Pinos.Count To Pinos.Count + (Discos.Count - Pinos.Count)
+                Discos(i).MovePara(Pinos(K))
+                K += 1
+                Delay(Wait)
+            Next
+            For i = Discos.Count - 1 To Pinos.Count Step -1
+                Discos(i).MovePara(Pinos(Pinos.Count))
+                Delay(Wait)
+            Next
+            For i = 1 To Pinos(2).Discos.Count - 1
+                Discos(i).MovePara(Pinos(Pinos.Count - i))
+                Delay(Wait)
+            Next
+            K = 1
+            For i = Pinos(2).Discos(0).Numero To Pinos(2).Discos.Last.Numero
+                Discos(i).MovePara(Pinos(K))
+                K += 1
+                Delay(Wait)
+            Next
+            For i = Pinos.Last.Value.Discos.Count + 1 To 1 Step -1
+                Discos(i).MovePara(Pinos.Last.Value)
+                Delay(Wait)
+            Next
+        End If
+
+    End Sub
+
     Sub Hanoi3(ByVal Disco As Integer, ByVal De As Integer, ByVal Por As Integer, ByVal Para As Integer)
         If Disco = 0 Or resolver = False Then Exit Sub
         Hanoi3(Disco - 1, De, Para, Por)
@@ -94,7 +133,6 @@
         Else
             If resolver = False Then Exit Sub
             Hanoi4(Disco - 2, de, por2, para, por1)
-
             'cout << source << " --> " << intermed2 << endl;
             If resolver = False Then Exit Sub
             Pinos(de).Discos.Peek.MovePara(Pinos(por2))
@@ -206,6 +244,8 @@
             HanoiIguais()
         ElseIf Pinos.Count > Discos.Count Then
             HanoiEasy()
+        ElseIf Discos.Count = 7 And Pinos.Count = 5 Then
+            Hanoi5e7()
         End If
     End Sub
 
